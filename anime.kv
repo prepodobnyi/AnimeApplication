@@ -1,0 +1,190 @@
+#:kivy 2.2.1
+#:import Animation kivy.animation.Animation
+
+<SearchScreen>:
+    search_field: search_field 
+    name: "search"
+    search_button: search_button
+    ongoing_bar: ongoing_bar
+    popular_bar: popular_bar 
+    mainboxl: mainboxl
+    keycup: keycup
+    MDBoxLayout:
+        id: mainboxl
+        orientation: "vertical"
+        spacing: dp(10)
+        padding: dp(5)
+
+        #Бокс поиска
+        MDBoxLayout:
+            adaptive_height: True        
+
+            MDIconButton:
+                id: search_button
+                icon: 'magnify'
+                on_release: root.search_anime()
+
+            MDTextField:
+                id: search_field
+                hint_text: "Search Anime"
+                mode: 'fill'
+                text_color_focus: "white"
+                hint_text_color_focus: "lightgray"
+                fill_color_normal: (1, 1, 1, 0.1)
+                fill_color_focus: (1, 1, 1, 0.18)
+                radius: [28,28,28,28]
+            
+        #Скролл всего что н же поиска по вертикали
+        VerticallScroll:
+            
+            scroll_type: ['bars','content']
+            size_hint: 1, 1
+            adaptive_height: True
+            MDGridLayout:
+                height: self.minimum_height
+                spacing: dp(10)
+                padding: dp(5)
+                height: dp(1200)
+                cols: 1
+                size_hint_y: None
+                MDLabel:
+                    id: keycup
+                    text: "ONGOING"
+                    padding: dp(5)
+                    adaptive_height: True 
+
+                #Скролл онгоингов по горизонтали
+                ScrollHorizontalOnY:
+                    scroll_type: ['bars','content']
+                    do_scroll_y: False
+                    adaptive_height: True 
+                    size_hint: 1, .2
+                    
+                    MDGridLayout:
+                        id: ongoing_bar
+                        size_hint_x: None
+                        width: self.minimum_width
+                        rows: 1
+                        spacing: dp(50)
+                        padding: dp(5)
+                        
+                #Скролл популярных аниме по горизонтали        
+                MDLabel:
+                    text: "POPULAR"
+                    padding: dp(5)
+                    adaptive_height: True 
+                    
+                ScrollHorizontalOnY:
+                    scroll_type: ['bars','content']
+                    do_scroll_y: False
+                    adaptive_height: True 
+                    size_hint: 1, .4
+                    
+                    MDGridLayout:
+                        id: popular_bar
+                        size_hint_x: None
+                        width: self.minimum_width
+                        rows: 1
+                        spacing: dp(50)
+                        padding: dp(5)
+                        
+                MDBoxLayout:
+                    orientation: "vertical"
+                    adaptive_height: True 
+                    Label:
+                        text: 'xyi'
+                
+<ChoiceParametrScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        
+        MDIconButton:
+            icon: 'keyboard-backspace'
+            on_release: root.manager.current = "search"
+            
+        ScrollView:
+            do_scroll_x: False
+            MDGridLayout:
+                size_hint_y: None
+                height: self.minimum_height
+                cols: 1
+                MDBoxLayout:
+                    padding: dp(10)
+                    spacing: dp(30)
+                    size_hint: 1, None
+                    orientation: "vertical"
+                    adaptive_height:True
+                
+                    MDBoxLayout:
+                        padding: dp(10)
+                        orientation: "horizontal"
+                        spacing: dp(50)  
+                        adaptive_height:True
+                        pos_hint: {'top': 1}
+                        
+                        FitImage:
+                            id: title_image
+                            size: "160dp", "255dp"
+                            radius: [25, 25, 4, 4]
+                            size_hint: None, None
+
+                        MDBoxLayout:
+                            padding: dp(10)
+                            spacing: dp(20)
+                            orientation: "vertical"
+                            adaptive_height:True
+                            pos_hint: {'top': 1}
+                           
+                            MDLabel:
+                                adaptive_height:True
+                                font_size: 19
+                                text_size: self.width, None
+                                id: label
+
+                            MDLabel:
+                                adaptive_height:True
+                                font_size: 24
+                                text_size: self.width, None
+                                theme_text_color: 'Custom'
+                                text_color: 0.85, 0.85, 0.85, 0.8
+                                id: score
+
+                    MDLabel:
+                        padding: dp(10)
+                        adaptive_height:True
+                        size_hint_x: .8
+                        text_size: self.width, None
+                        id: description
+                    Widget:
+                        size_hint: 1,1
+                
+                
+               
+                    
+<AllAnimeScreen>:
+    all_anime_bar: all_anime_bar
+    scroll_all_anime: scroll_all_anime
+    BoxLayout:
+        orientation: 'vertical'
+        MDIconButton:
+            id: back
+            icon: 'keyboard-backspace'
+            on_release: root.manager.current = "search"
+        ScrollView:
+            id: scroll_all_anime
+            do_scroll_x: False
+            
+            MDGridLayout:
+                id: all_anime_bar
+                size_hint_y: None
+                height: self.minimum_height
+                cols: 5
+                spacing: dp(root.width_dp)
+                padding: dp(10)
+
+        
+                        
+                    
+                            
+                    
+                
