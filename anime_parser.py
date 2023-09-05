@@ -5,7 +5,7 @@ import json
 import html5lib
 from time import sleep
 
-token = '447d179e875efe44217f20d1ee2146be'
+
 def get_responce_200(url,headers):
     response = requests.get(url=url,headers=headers)
     if response.status_code != 200:
