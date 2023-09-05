@@ -17,7 +17,7 @@ from kivy.metrics import dp
 from anime_parser import *
 from view import *
 import textwrap
-token = '447d179e875efe44217f20d1ee2146be'
+
 
 
 
